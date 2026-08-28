@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Для Ксюши 🎮</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+    background:
+        radial-gradient(circle at 20% 20%, #39458f, transparent 30%),
+        radial-gradient(circle at 80% 80%, #752d86, transparent 35%),
+        #101326;
+    overflow: hidden;
+}
+
+.screen {
+    min-height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.card {
+    width: 100%;
+    max-width: 500px;
+    padding: 30px 25px;
+    text-align: center;
+
+    background: rgba(20, 24, 50, 0.96);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 25px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.5),
+        0 0 40px rgba(80,100,255,.2);
+
+    animation: appear .5s ease;
+}
+
+.logo {
+    font-size: 65px;
+    animation: float 2s infinite ease-in-out;
+}
+
+h1 {
+    font-size: 30px;
+    margin: 15px 0;
+}
+
+p {
+    color: #d8dbed;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.options {
+    display: grid;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.option {
+    width: 100%;
+    padding: 16px;
+
+    border: 2px solid #363c67;
+    border-radius: 14px;
+
+    background: #202642;
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.option:hover {
+    transform: scale(1.03);
+    border-color: #7289ff;
+}
+
+.option.selected {
+    background: #506cff;
+    border-color: white;
+}
+
+.next {
+    margin-top: 22px;
+    padding: 15px 35px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #506cff;
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: none;
+}
+
+.next:hover {
+    transform: scale(1.05);
+}
+
+.summary {
+    background: #202642;
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 20px;
+    line-height: 1.8;
+}
+
+.final-buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#yes {
+    background: #506cff;
+}
+
+#no {
+    background: #393d52;
+    position: relative;
+}
+
+#success h1 {
+    color: #7c91ff;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Конфетти */
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -20px;
+    z-index: 100;
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- ЭКРАН 1 -->
+
+<section class="screen active" id="screen1">
+
+<div class="card">
+
+<div class="logo">🎮</div>
+
+<h1>Ксюша, выбирай режим</h1>
+
+<p>
+Во что будем играть?
+</p>
+
+<div class="options">
+
+<button class="option game">
+🏙️ Brookhaven
+</button>
+
+<button class="option game">
+🍓 Berry Avenue
+</button>
+
+<button class="option game">
+🧗 Обби на двоих
+</button>
+
+<button class="option game">
+🎲 Другое
+</button>
+
+</div>
+
+<button class="next" id="next1">
+Далее →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ЭКРАН 2 -->
+
+<section class="screen" id="screen2">
+
+<div class="card">
+
+<div class="logo">📅</div>
+
+<h1>Выбери дату</h1>
+
+<p>
+Когда будем играть?
+</p>
+
+<div class="options">
+
+<button class="option date">
+30 августа
+</button>
+
+<button class="option date">
+31 августа
+</button>
+
+</div>
+
+<button class="next" id="next2">
+Далее →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ЭКРАН 3 -->
+
+<section class="screen" id="screen3">
+
+<div class="card">
+
+<div class="logo">⏰</div>
+
+<h1>Во сколько?</h1>
+
+<p>
+Выбирай удобное время
+</p>
+
+<div class="options">
+
+<button class="option time">19:00</button>
+<button class="option time">20:00</button>
+<button class="option time">21:00</button>
+<button class="option time">22:00</button>
+<button class="option time">23:00</button>
+<button class="option time">00:00</button>
+
+</div>
+
+<button class="next" id="next3">
+Далее →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ЭКРАН 4 -->
+
+<section class="screen" id="screen4">
+
+<div class="card">
+
+<div class="logo">🎮</div>
+
+<h1>Почти всё!</h1>
+
+<div class="summary">
+
+<b>Режим:</b>
+<span id="chosenGame"></span>
+
+<br>
+
+<b>Дата:</b>
+<span id="chosenDate"></span>
+
+<br>
+
+<b>Время:</b>
+<span id="chosenTime"></span>
+
+</div>
+
+<p>
+
+Ну что, Ксюша...
+
+<br><br>
+
+<b>Ты согласна?</b>
+
+</p>
+
+<div class="final-buttons">
+
+<button class="option" id="yes">
+ДА 🎮
+</button>
+
+<button class="option" id="no">
+НЕТ
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ФИНАЛ -->
+
+<section class="screen" id="success">
+
+<div class="card">
+
+<div class="logo">🏆</div>
+
+<h1>
+Договорились!
+</h1>
+
+<p>
+
+Ксюша согласилась!
+
+<br><br>
+
+Тогда встречаемся в Roblox 🎮
+
+</p>
+
+<div class="summary">
+
+🎮 <span id="finalGame"></span>
+
+<br>
+
+📅 <span id="finalDate"></span>
+
+<br>
+
+⏰ <span id="finalTime"></span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<script>
+
+let selectedGame = "";
+let selectedDate = "";
+let selectedTime = "";
+
+
+// Переключение экранов
+
+function showScreen(number) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+            screen.classList.remove("active");
+        });
+
+    document
+        .getElementById("screen" + number)
+        .classList.add("active");
+}
+
+
+// Выбор режима
+
+document
+    .querySelectorAll(".game")
+    .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            document
+                .querySelectorAll(".game")
+                .forEach(b => {
+                    b.classList.remove("selected");
+                });
+
+            button.classList.add("selected");
+
+            selectedGame = button.innerText;
+
+            document
+                .getElementById("next1")
+                .style.display = "inline-block";
+
+        });
+
+    });
+
+
+// Выбор даты
+
+document
+    .querySelectorAll(".date")
+    .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            document
+                .querySelectorAll(".date")
+                .forEach(b => {
+                    b.classList.remove("selected");
+                });
+
+            button.classList.add("selected");
+
+            selectedDate = button.innerText;
+
+            document
+                .getElementById("next2")
+                .style.display = "inline-block";
+
+        });
+
+    });
+
+
+// Выбор времени
+
+document
+    .querySelectorAll(".time")
+    .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            document
+                .querySelectorAll(".time")
+                .forEach(b => {
+                    b.classList.remove("selected");
+                });
+
+            button.classList.add("selected");
+
+            selectedTime = button.innerText;
+
+            document
+                .getElementById("next3")
+                .style.display = "inline-block";
+
+        });
+
+    });
+
+
+// Кнопка Далее
+
+document
+    .getElementById("next1")
+    .onclick = () => {
+
+        showScreen(2);
+
+    };
+
+
+document
+    .getElementById("next2")
+    .onclick = () => {
+
+        showScreen(3);
+
+    };
+
+
+document
+    .getElementById("next3")
+    .onclick = () => {
+
+        document
+            .getElementById("chosenGame")
+            .innerText = selectedGame;
+
+        document
+            .getElementById("chosenDate")
+            .innerText = selectedDate;
+
+        document
+            .getElementById("chosenTime")
+            .innerText = selectedTime;
+
+        showScreen(4);
+
+    };
+
+
+// Кнопка ДА
+
+document
+    .getElementById("yes")
+    .onclick = () => {
+
+        document
+            .getElementById("finalGame")
+            .innerText = selectedGame;
+
+        document
+            .getElementById("finalDate")
+            .innerText = selectedDate;
+
+        document
+            .getElementById("finalTime")
+            .innerText = selectedTime;
+
+        document
+            .querySelectorAll(".screen")
+            .forEach(s => {
+                s.classList.remove("active");
+            });
+
+        document
+            .getElementById("success")
+            .classList.add("active");
+
+        createConfetti();
+
+    };
+
+
+// БЕГУЩАЯ КНОПКА НЕТ
+
+const no = document.getElementById("no");
+
+function runAway() {
+
+    no.style.position = "fixed";
+
+    const maxX =
+        window.innerWidth - no.offsetWidth - 20;
+
+    const maxY =
+        window.innerHeight - no.offsetHeight - 20;
+
+    const x =
+        Math.random() * Math.max(maxX, 10);
+
+    const y =
+        Math.random() * Math.max(maxY, 10);
+
+    no.style.left =
+        Math.max(10, x) + "px";
+
+    no.style.top =
+        Math.max(10, y) + "px";
+
+    no.style.transform =
+        `rotate(${Math.random() * 50 - 25}deg)
+         scale(${0.8 + Math.random() * 0.5})`;
+
+}
+
+
+// Компьютер
+
+no.addEventListener(
+    "mouseenter",
+    runAway
+);
+
+no.addEventListener(
+    "mousedown",
+    runAway
+);
+
+
+// Телефон
+
+no.addEventListener(
+    "touchstart",
+    function(event) {
+
+        event.preventDefault();
+
+        runAway();
+
+    }
+);
+
+
+// Конфетти
+
+function createConfetti() {
+
+    for (
+        let i = 0;
+        i < 120;
+        i++
+    ) {
+
+        const piece =
+            document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.background =
+            [
+                "#506cff",
+                "#ffffff",
+                "#8b5cff",
+                "#ff4d8d",
+                "#55e6c1"
+            ][
+                Math.floor(
+                    Math.random() * 5
+                )
+            ];
+
+        piece.style.transform =
+            `rotate(${Math.random() * 360}deg)`;
+
+        piece.style.transition =
+            `${2 + Math.random() * 3}s linear`;
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+
+            piece.style.top = "110vh";
+
+        }, 50);
+
+        setTimeout(() => {
+
+            piece.remove();
+
+        }, 5000);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
