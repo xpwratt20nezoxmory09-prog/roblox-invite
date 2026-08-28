@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Для Ксюши</title>
+  <style>
+    body { font-family: sans-serif; background: #ffe6f2; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+    .card { background: white; padding: 25px; border-radius: 20px; text-align: center; width: 85%; max-width: 350px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    h1 { color: #ff4d88; font-size: 22px; }
+    h2 { color: #444; font-size: 16px; margin-top: 15px; }
+    select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 10px; border: 1px solid #ffb3d1; font-size: 16px; }
+    .btns { display: flex; justify-content: space-between; margin-top: 25px; position: relative; height: 50px; }
+    .yes-btn { background: #ff4d88; color: white; border: none; padding: 12px 25px; border-radius: 10px; font-weight: bold; width: 45%; font-size: 16px; }
+    .no-btn { background: #ddd; color: #333; border: none; padding: 12px 25px; border-radius: 10px; width: 45%; position: absolute; right: 0; font-size: 16px; }
+  </style>
+</head>
+<body>
+<div class="card" id="box">
+  <h1>Ксюша, го в Роблокс? 🎮</h1>
+  <h2>Во что играем?</h2>
+  <select id="game">
+    <option>Brookhaven</option>
+    <option>Berry Avenue RP</option>
+    <option>Обби на двоих</option>
+    <option>Catalog avatar</option>Berry Avenue RP
+    <option>Или в другое...</option>
+    
+  </select>
+  <h2>Какого числа?</h2>
+  <select id="date">
+    <option>30 августа</option>
+    <option>31 августа</option>
+  </select>
+  <h2>Во сколько?</h2>
+  <select id="time">
+    <option>19:00</option>
+    <option>20:00</option>
+    <option>21:00</option>
+    <option>22:00</option>
+    <option>23:00</option>
+    <option>00:00</option>
+  </select>
+  <h2>Ты согласна? ✨</h2>
+  <div class="btns">
+    <button class="yes-btn" onclick="send()">Да!</button>
+    <button class="no-btn" id="no" onclick="move()" ontouchstart="move()">Нет</button>
+  </div>
+</div>
+<script>
+  function move() {
